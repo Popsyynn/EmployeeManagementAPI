@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.controller.EmployeeController;
 import com.example.entity.Employee;
 import com.example.exception.EmployeeException;
 import com.example.exception.EmployeeNotFoundException;
@@ -13,20 +14,32 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 class TestingAppApplicationTests {
+
 
 	@Mock
 	EmployeeRepository repository;
 
 	@InjectMocks
 	EmployeeServiceImp employeeService;
+
 
 	@BeforeEach
 	public void setup() {
@@ -54,7 +67,7 @@ class TestingAppApplicationTests {
 	}
 
 	@Test
-	public void testGetAllEmployee() {
+	public void testGetAllEmployee() throws Exception {
 		Employee employee = new Employee();
 		employee.setId(1l);
 		employee.setEmail("dorkibeauty6@gmail.com");
@@ -70,6 +83,8 @@ class TestingAppApplicationTests {
 		List<Employee> employees1 = (List<Employee>) employeeService.getEmployee();
 		Assertions.assertNotNull(employees1);
 		Assertions.assertSame(employees, employees1);
+
+
 	}
 
 	@Test
