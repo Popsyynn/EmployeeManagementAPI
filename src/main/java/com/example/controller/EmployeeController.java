@@ -38,7 +38,7 @@ public class EmployeeController {
     @RequestMapping(value = "/employee/{id}" , method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) throws EmployeeException {
         service.deleteEmployee(id);
-        return new ResponseEntity<>("deleted" , HttpStatus.OK);
+        return new ResponseEntity<>("deleted" , HttpStatus.FOUND);
     }
 
     @RequestMapping(value = "/employee/{id}", method = RequestMethod.PUT)
