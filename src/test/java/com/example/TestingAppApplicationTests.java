@@ -57,13 +57,7 @@ class TestingAppApplicationTests {
 
 		Employee savedEmployee = employeeService.createEmployee(employee);
 		Assertions.assertNotNull(savedEmployee);
-		/*employee.setEmail("pop@gmail");
-		employee.setId(1l);
-		employee.setLastName("hab");
-		employee.setLastName("pop");
-		when(repository.save(employee)).thenReturn(employee);
-		Employee employee1 = employeeService.createEmployee(employee);
-		verify(repository , times(1)).save(employee);*/
+
 	}
 
 	@Test
@@ -88,14 +82,14 @@ class TestingAppApplicationTests {
 	}
 
 	@Test
-	public void testGetEmployeeById() throws EmployeeException {
+	public void testGetEmployeeByEmail() throws EmployeeException {
 		Employee employee = new Employee();
 		employee.setId(3l);
 		employee.setEmail("pop@gmail.com");
 		employee.setFirstName("pop");
 		employee.setLastName("ola");
 		when(repository.findById(employee.getId())).thenReturn(Optional.of(employee));
-		Optional<Employee> employee1 = employeeService.getEmployeeById(employee.getId());
+		Optional<Employee> employee1 = employeeService.findEmployeeByEmail(employee.getEmail());
 		Assertions.assertNotNull(employee1);
 		Assertions.assertTrue(employee1.isPresent());
 	}
@@ -108,7 +102,7 @@ class TestingAppApplicationTests {
 		employee.setLastName("ola");
 		employee.setEmail("pop");
 		when(repository.findById(employee.getId())).thenReturn(Optional.of(employee));
-		employeeService.deleteEmployee(employee.getId());
+		employeeService.deleteEmployee(employee.getEmail());
 		verify(repository, times(1)).deleteById(employee.getId());
 	}
 /*
