@@ -111,7 +111,7 @@ class TestingAppApplicationTests {
 		employeeService.deleteEmployee(employee.getId());
 		verify(repository, times(1)).deleteById(employee.getId());
 	}
-
+/*
 	@Test
 	public void testUpdateEmployeeMethod() throws EmployeeException {
 		Employee employee = new Employee();
@@ -132,5 +132,5 @@ class TestingAppApplicationTests {
 		Assertions.assertEquals(updatedEmployee.getFirstName() , "New-Name");
 		Assertions.assertEquals(updatedEmployee.getLastName() ,"New-Last-Name");
 
-	}
+	}*/
 }

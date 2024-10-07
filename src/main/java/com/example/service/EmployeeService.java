@@ -1,7 +1,9 @@
 package com.example.service;
 
+import com.example.exception.EmployeeAlreadyExist;
 import com.example.exception.EmployeeException;
 import com.example.entity.Employee;
+import com.example.exception.EmployeeNotFoundException;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -10,13 +12,13 @@ public interface EmployeeService {
 
 
 
-    Employee createEmployee(Employee employee) throws EmployeeException;
+    Employee createEmployee(Employee employee) throws EmployeeAlreadyExist;
 
-    public abstract Collection<Employee> getEmployee();
+    Collection<Employee> getEmployee();
 
-    public abstract Optional<Employee> getEmployeeById(Long id) throws EmployeeException;
+    Optional<Employee> findEmployeeByEmail(String email) throws EmployeeNotFoundException;
 
-    public abstract void deleteEmployee(Long id) throws EmployeeException;
+    void deleteEmployee(String email) throws EmployeeNotFoundException;
 
-    public abstract void updateEmployee(Long id , Employee employee) throws EmployeeException;
+    Optional<Employee> updateEmployee(String email , Employee employee) throws EmployeeNotFoundException;
 }

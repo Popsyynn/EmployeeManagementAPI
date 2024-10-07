@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class EmployeeException extends Throwable {
 
+    //Handling exception
     @ExceptionHandler(value = EmployeeNotFoundException.class)
     public ResponseEntity<Object> exception(EmployeeNotFoundException exception){
         return new ResponseEntity<>("employee not found" , HttpStatus.NOT_FOUND);
