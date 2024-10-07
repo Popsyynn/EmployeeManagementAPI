@@ -105,26 +105,5 @@ class TestingAppApplicationTests {
 		employeeService.deleteEmployee(employee.getEmail());
 		verify(repository, times(1)).deleteById(employee.getId());
 	}
-/*
-	@Test
-	public void testUpdateEmployeeMethod() throws EmployeeException {
-		Employee employee = new Employee();
-		employee.setId(1l);
-		employee.setFirstName("a");
-		employee.setLastName("b");
-		employee.setEmail("abc");
-		repository.save(employee);
 
-		Employee updatedEmployee = new Employee();
-		updatedEmployee.setId(1l);
-		updatedEmployee.setFirstName("New-Name");
-		updatedEmployee.setLastName("New-Last-Name");
-		updatedEmployee.setEmail("New-mail");
-		when(repository.findById(employee.getId())).thenReturn(Optional.of(updatedEmployee));
-		employeeService.updateEmployee(employee.getId(), updatedEmployee);
-		Assertions.assertEquals(updatedEmployee.getEmail(), "New-mail");
-		Assertions.assertEquals(updatedEmployee.getFirstName() , "New-Name");
-		Assertions.assertEquals(updatedEmployee.getLastName() ,"New-Last-Name");
-
-	}*/
 }
